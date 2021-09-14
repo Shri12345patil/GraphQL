@@ -1,0 +1,10 @@
+type Query {
+  Articles: [Article!]!
+  Article(id: ID!): Article
+}
+
+type Article {
+  id: ID
+  title: String
+}
+

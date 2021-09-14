@@ -1,19 +1,24 @@
-const { ApolloServer, gql } = require("apollo-server");
+// node src/index.js
+const { GraphQLServer } = require('graphql-yoga')
+const fetch = require('node-fetch')
 
-const typeDefs = gql`
-  type Query {
-    hello: String!
-  }
-`;
+const baseURL = `http://127.0.0.1:5000`
 
 const resolvers = {
   Query: {
-    hello: () => "Hello World!"
+    Articles: () => {
+      return fetch(`${baseURL}/get`).then(res => res.json())
+    },
+    Article: (parent, args) => {
+      const { id } = args
+      return fetch(`${baseURL}/get/${id}`).then(res => res.json())
+    }
   }
-};
+}
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new GraphQLServer({
+  typeDefs: './src/schema.graphql',
+  resolvers,
+})
 
-server.listen().then(({ url }) => console.log(`server started at ${url}`));
-
-// node src/index.js for run
+server.start(() => console.log(`Server is running on http://localhost:4000`))
