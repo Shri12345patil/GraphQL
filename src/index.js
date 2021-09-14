@@ -2,12 +2,16 @@
 const { GraphQLServer } = require('graphql-yoga')
 const fetch = require('node-fetch')
 
-const baseURL = `http://127.0.0.1:5000/get`
+const baseURL = `http://127.0.0.1:5000`
 
 const resolvers = {
   Query: {
     Articles: () => {
-      return fetch(`${baseURL}`).then(res => res.json())
+      return fetch(`${baseURL}/get`).then(res => res.json())
+    },
+    Article: (parent, args) => {
+      const { id } = args
+      return fetch(`${baseURL}/get/${id}`).then(res => res.json())
     }
   }
 }
