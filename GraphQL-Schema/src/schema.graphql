@@ -1,0 +1,11 @@
+type Query {
+  Students: [Student!]!
+  Student(id: ID!): Student
+}
+
+type Student {
+  id: ID
+  username: String
+  password: String
+}
+
