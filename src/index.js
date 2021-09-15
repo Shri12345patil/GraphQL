@@ -1,19 +1,18 @@
-const { ApolloServer, gql } = require("apollo-server");
+import React from "react";
+import ReactDOM from "react-dom";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
-const typeDefs = gql`
-  type Query {
-    hello: String!
-  }
-`;
+import App from "./App";
 
-const resolvers = {
-  Query: {
-    hello: () => "Hello World!"
-  }
-};
+const client = new ApolloClient({
+  uri: "http://localhost:4000/",
+  cache: new InMemoryCache()
+});
 
-const server = new ApolloServer({ typeDefs, resolvers });
-
-server.listen().then(({ url }) => console.log(`server started at ${url}`));
-
-// node src/index.js for run
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  rootElement
+);
