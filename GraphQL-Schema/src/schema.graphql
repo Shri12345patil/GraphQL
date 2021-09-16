@@ -3,6 +3,12 @@ type Query {
   Student(id: ID!): Student
 }
 
+type Mutation {
+  addStudent(username: String!, password: String!): String!
+  updateStudent(id: ID!, username: String!, password: String!): String!
+  deleteStudent(id: ID!): String!
+}
+
 type Student {
   id: ID
   username: String

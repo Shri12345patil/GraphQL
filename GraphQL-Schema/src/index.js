@@ -8,10 +8,19 @@ const resolvers = {
   Query: {
     Students: () => {
       return fetch(`${baseURL}/get`).then(res => res.json())
-    },
-    Student: (parent, args) => {
-      const { id } = args
-      return fetch(`${baseURL}/get/${id}`).then(res => res.json())
+    }
+  },
+  Mutation: {
+    addStudent: (parent, args) => {
+       const Student = {
+        username: args.username,
+        password: args.password,
+      }
+	  return fetch(`${baseURL}/add`, { 
+			method: 'POST', 
+			body: JSON.stringify(Student),
+			headers: { 'Content-Type': 'application/json' }
+		}).then(res => res.text());
     }
   }
 }
