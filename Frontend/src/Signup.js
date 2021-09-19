@@ -1,16 +1,35 @@
 import React, { useState } from 'react'
 import APIService from './APIService'
+import { gql, useMutation } from '@apollo/client';
 
-function Signup (props) {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+const ADD_STUDENT = gql`
+mutation addStudent(
+  $username: String!,
+  $password: String!
+  ){
+    addStudent(
+      username: $username, 
+      password: $password
+      ){
+      username
+      password
+    }
+  }
+`;
 
-  const insertStudent = () => {
-    APIService.InsertStudent({username,password})
-    .then(resp=> props.insertedStudent(resp))
-    .catch(error => console.log(error))
-    alert("User created..!");
-    window.open("http://localhost:3000/","_self");
+function Signup () {
+
+const [variables, setVariables] = useState({
+  username: '',
+  password: '',
+})
+
+const [register, { error }] = useMutation(ADD_STUDENT)
+const submitRegisterForm = (e) => {
+  //  e.preventDefault()
+ console.log(variables);
+ register({ variables })
+  // window.open("http://localhost:3000/","_self");
 }
  return (
             <div>
@@ -21,8 +40,11 @@ function Signup (props) {
                         name="username" 
                         placeholder="enter Username" 
                         autoComplete="off"
-                        value={username}
-                        onChange= {(e) => setUsername(e.target.value)} />&nbsp;&nbsp;
+                        value={variables.username}
+                        onChange= {(e) => 
+                        setVariables({
+                          ...variables,
+                          username: e.target.value})} />&nbsp;&nbsp;
               </div>
               <div style={{ marginTop: 10 }}>
                 <label>Password</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -30,10 +52,13 @@ function Signup (props) {
                         name="password" 
                         placeholder="Enter password" 
                         autoComplete="off"
-                        value={password}
-                        onChange= {(e) => setPassword(e.target.value)} />
+                        value={variables.password}
+                        onChange= {(e) => 
+                          setVariables({
+                            ...variables,
+                            password: e.target.value})} />
               </div><br/>
-            <input type="button" value='Create' onClick={() => {insertStudent();}} /><br />
+            <input type="button" value='Create' onClick={() => {submitRegisterForm();}} /><br />
           </div> 
         );
 
