@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Header from './Header';
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
-import Result from './Result';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",

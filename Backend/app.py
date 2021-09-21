@@ -53,6 +53,7 @@ def add_student():
     students = Students(username, password)
     db.session.add(students)
     db.session.commit()
+    student_schema = StudentSchema()
     return student_schema.jsonify(students)
 
 @app.route('/update/<id>/', methods = ['PUT'])

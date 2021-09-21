@@ -12,17 +12,22 @@ const resolvers = {
   },
   Mutation: {
     addStudent: (parent, args) => {
-       const Student = {
-        username: args.username,
-        password: args.password,
+         const Student = {
+          username: args.username,
+          password: args.password,
+        }
+         const options = {
+          method: 'POST',
+          body: JSON.stringify(Student),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        }
+        return fetch(`${baseURL}/add`, options)
+        .then(res => res.json())
+        // .then(res => console.log(res));
       }
-	  return fetch(`${baseURL}/add`, { 
-			method: 'POST', 
-			body: JSON.stringify(Student),
-			headers: { 'Content-Type': 'application/json' }
-		}).then(res => res.text());
-    }
-  }
+   }
 }
 
 const server = new GraphQLServer({
@@ -31,3 +36,5 @@ const server = new GraphQLServer({
 })
 
 server.start(() => console.log(`Server is running on http://localhost:4000`))
+
+

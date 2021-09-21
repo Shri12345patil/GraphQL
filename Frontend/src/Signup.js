@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import APIService from './APIService'
 import { gql, useMutation } from '@apollo/client';
+
 
 const ADD_STUDENT = gql`
 mutation addStudent(
@@ -25,13 +25,15 @@ const [variables, setVariables] = useState({
 })
 
 const [register, { error }] = useMutation(ADD_STUDENT)
+
 const submitRegisterForm = (e) => {
-  //  e.preventDefault()
- console.log(variables);
- register({ variables })
-  // window.open("http://localhost:3000/","_self");
-}
- return (
+    e.preventDefault();
+    // console.log("value post");
+    // console.log(variables);
+    register({ variables});
+    window.open("http://localhost:3000/","_self");
+  }
+  return (
             <div>
               <label>SignUp</label><br /> <hr/>
               <div>
@@ -58,9 +60,10 @@ const submitRegisterForm = (e) => {
                             ...variables,
                             password: e.target.value})} />
               </div><br/>
-            <input type="button" value='Create' onClick={() => {submitRegisterForm();}} /><br />
+            <input type="button" value='Create' onClick={submitRegisterForm} /><br />
           </div> 
         );
 
 }
 export default Signup
+
