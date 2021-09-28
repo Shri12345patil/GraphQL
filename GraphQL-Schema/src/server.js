@@ -1,4 +1,4 @@
-//  run : src/server.js 
+//  run : node src/server.js 
 // const { ApolloServer } = require("apollo-server");
 // const typeDefs = require("./schema");
 // const resolvers = require("./resolvers");
