@@ -1,11 +1,10 @@
-// import React from 'react';
-// import { render, screen} from '@testing-library/react';
-// import Signup from '../Signup';
+import React from 'react';
+import { render} from '@testing-library/react';
+import Signup from '../Signup';
 
-// describe("App", () => {
-// test('renders learn react link', () => {
-//   render(<Signup />);
-//   screen.debug();
-// });
 
-// });
+ describe("StudentList", () => {
+test('renders learn react link', () => {
+    
+});
+});
