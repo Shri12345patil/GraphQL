@@ -60,7 +60,8 @@ useEffect(() => {
 }, [location]);
 
 // graphql code
-const p_id= location.state.replace(/ /g,'');
+//const p_id= location.state.replace(/ /g,'');
+const p_id= location.state;
 const { data, loading, error } = useQuery(FILMS_QUERY);
 
 

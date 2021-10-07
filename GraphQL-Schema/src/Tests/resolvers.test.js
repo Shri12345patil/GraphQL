@@ -12,7 +12,7 @@ describe("test cases for resolver", () =>
 
      it('check the mutation response ', () => {
         const mutation =  resolvers.Mutation.addStudent("praju" , "patil");
-        console.log(mutation);
+        // console.log(mutation);
         let res=mutation;
          expect(mutation).toBe(res)
        })

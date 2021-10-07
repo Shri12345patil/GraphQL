@@ -52,7 +52,7 @@ const insertedStudent = (student)=> {
       <ButtonGroup onClick={handleClick}>
         <Button variant="success" value="Login" onClick={setModalIsOpenToTrue1}>Login</Button>
 
-        <Modal className="modal" isOpen={modalIsOpen1} style={customStyles} onRequestClose={()=> setModalIsOpen1(false)}  ariaHideApp={false}>
+        <Modal isOpen={modalIsOpen1} style={customStyles} onRequestClose={()=> setModalIsOpen1(false)}  ariaHideApp={false}>
                   <button className="close-icon" onClick={setModalIsOpenToFalse1}>x</button>
                   <Login/>
         </Modal>

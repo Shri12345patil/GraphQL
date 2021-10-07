@@ -19,7 +19,7 @@ module.exports = {
              username: args.username, 
              password: args.password 
             }
-             console.log(args);
+            // console.log(args);
            if (args.username === '' ) {
              if (args.password === '') {
               throw new Error("username and password not found")
@@ -31,12 +31,6 @@ module.exports = {
            if (args.password === '') {
             throw new Error("password not found")
            } 
-          //  if(args.username.length > 5)
-          //     throw new Error("firstName should be less than 15 characters")
-
-          //   if(args.password.length < 8 )
-          //     throw new Error("password should be minimum 8 characters")
-            else {
             const options = {
               method: 'POST',
               body: JSON.stringify(Student),
@@ -47,7 +41,12 @@ module.exports = {
             return fetch(`${baseURL}/add`, options)
            .then(res => res.json())
             // .then(res => console.log(res));
-           }
         }
      }
 };
+
+// module.exports = mocks = {
+//   Int: () => 2,
+//   String: () => 'hhhhhhh',
+// };
+

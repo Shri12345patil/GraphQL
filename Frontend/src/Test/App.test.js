@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App';
+jest.mock('../App', () => () => (<div>Sign-Up</div>));
 
 describe("App", () => {
 test('renders learn react link', () => {
@@ -7,15 +8,9 @@ test('renders learn react link', () => {
   screen.debug();
 });
 
-test('renders App component', () => {
-  render(<App />);
-  screen.getByText('Login');
-  expect(screen.getByText('Login')).toBeInTheDocument;
-});
-
-test('renders App component', () => {
-  render(<App />);
-
-  expect(screen.getByRole('group')).toBeInTheDocument;
+test('renders', () => {
+  const { container } = render(<App/>); 
+  expect(container.textContent)
+    .toMatch('Sign-Up');
 });
 });

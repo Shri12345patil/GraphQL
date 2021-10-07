@@ -24,13 +24,15 @@ const [variables, setVariables] = useState({
   password: '',
 })
 
-const [register, { error }] = useMutation(ADD_STUDENT)
-
+const [register] = useMutation(ADD_STUDENT);
+// console.log("start")
+// console.log(register);
 const submitRegisterForm = (e) => {
     e.preventDefault();
     // console.log("value post");
     // console.log(variables);
     register({ variables});
+    alert("Register sucessful..!");
     window.open("http://localhost:3000/","_self");
   }
   return (
